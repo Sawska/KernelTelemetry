@@ -1,14 +1,15 @@
-include "TelemetryCollector.h"
+#include "TelemetryCollector.h"
 #include "FileLogger.h"
 #include <thread>
 #include <chrono>
+
 
 int main() {
     TelemetryCollector collector;
     FileLogger logger("system_telemetry.log"); 
 
     while (true) {
-        SystemMetrics metrics = collector.collectMetrics();
+        SystemMetrics metrics = collector.getAllStats();
 
         logger.log(metrics);
 
