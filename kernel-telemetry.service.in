@@ -1,0 +1,18 @@
+[Unit]
+Description=Kernel Telemetry Logger
+After=network.target
+
+[Service]
+User=telemetry_user
+Group=telemetry_group
+
+ExecStart=@CMAKE_INSTALL_PREFIX@/bin/Logger
+
+Restart=always
+RestartSec=5
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

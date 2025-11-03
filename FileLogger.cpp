@@ -16,11 +16,11 @@ FileLogger::~FileLogger() {
 
 FileLogger::FileLogger(const std::string& logFilePath) {
     logFile.open(logFilePath, std::ios::out | std::ios::app);
+    
     if (!logFile.is_open()) {
-        std::cerr << "Error: Could not open log file: " << logFilePath << std::endl;
+        throw std::runtime_error("FATAL: Could not open log file: " + logFilePath + ". Check permissions!");
     }
 }
-
 void FileLogger::log(const SystemMetrics& metrics) {
     if (!logFile.is_open()) {
         return;
